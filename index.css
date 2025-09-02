@@ -1,0 +1,161 @@
+/* Reset e corpo */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.timer {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Tabuleiro responsivo clássico 4x4 */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* sempre 4 colunas */
+  gap: 10px;
+  width: 100%;
+  max-width: 400px; /* largura máxima do tabuleiro */
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Cartas quadradas responsivas */
+.card {
+  width: 100%;
+  padding-top: 100%; /* mantém proporção quadrada */
+  cursor: pointer;
+  perspective: 1000px;
+  position: relative;
+}
+
+.card-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  border-radius: 10px;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card-front {
+  background: #299be7;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: #ffffff;
+}
+
+.card-back img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain; /* mantém a imagem inteira visível */
+  border-radius: 10px;
+}
+
+/* Modal de vitória */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 90%;
+  box-sizing: border-box;
+}
+
+#restartBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #299be7;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#restartBtn:hover {
+  background-color: #1d7bbf;
+}
+
+/* Ajustes para tablets e celulares */
+@media (max-width: 768px) {
+  .game-board {
+    max-width: 90%;
+    gap: 8px;
+  }
+
+  .timer {
+    font-size: 18px;
+  }
+
+  #restartBtn {
+    font-size: 15px;
+    padding: 9px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-board {
+    max-width: 100%;
+    gap: 5px;
+  }
+
+  .timer {
+    font-size: 16px;
+  }
+
+  #restartBtn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
